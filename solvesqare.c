@@ -4,7 +4,44 @@
 
 /*Нахождение корней квадратного уравнения*/
 
-int solvesquare (double a, double b, double c, double* x1 double* x2)
+int solvesquare (double a, double b, double c, double* x1, double* x2)
+    {
+
+    if (a == 0)
+        {
+        if (b == 0)
+            {
+            if (c == 0)
+            return -1;
+            else
+            return  0;
+            }
+        else
+        *x1 = -c/b;
+        return 1;
+        }
+    else
+        {
+        double discr = b*b - 4*a*c;
+
+        if (discr < 0)
+        return 0;
+        else
+            {
+            if (discr > 0)
+                {
+                *x1 = (-b - sqrt(discr)) / (2 * a);
+                *x2 = (-b + sqrt(discr)) / (2 * a);
+                return 2;
+                }
+            else
+                {
+                *x1 = (-b) / (2 * a);
+                return 1;
+                }
+            }
+        }
+    }
 
 //-----------------------------------------------------------------------------
 
@@ -23,9 +60,7 @@ int main()
     scanf ("%lg %lg %lg",&a ,&b, &c);
     printf("Решаем уравнение: %.3lgx^2 + %.3lgx + %.3lg = 0\n",a ,b ,c);
 
-    int solvesquare(a, b, c, &x1, &x2);
-
-    int nofroots = solvesquare;
+    int nofroots = solvesquare (a, b, c, &x1, &x2);
 
     if (nofroots == 2)
     printf ("x1=%.3lg x2=%.3lg\n",x1 ,x2);
@@ -46,39 +81,3 @@ int main()
 
 
 //-----------------------------------------------------------------------------
-
-int solvesquare (double a, double b, double c, double* x1 double* x2)
-    {
-
-    if (a == 0)
-        {
-        if (b == 0)
-            {
-            if (c == 0)
-            return -1;
-            else
-            return  0;
-            }
-        else *x1 = -c/b;
-        return 1;
-        }
-    else
-        {
-        double discr = b*b - 4*a*c;
-
-        if (discr < 0)
-        return 0;
-        else
-            {
-            if (discr > 0)
-            *x1 = (-b - sqrt(discr)) / (2 * a);
-            *x2 = (-b + sqrt(discr)) / (2 * a);
-            return 2;
-            else
-                {
-                *x1 = (-b) / (2 * a);
-                return 1;
-                }
-            }
-        }
-    }
