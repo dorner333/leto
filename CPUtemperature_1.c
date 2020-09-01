@@ -8,7 +8,7 @@ void print_data(int data[], int size);
 
 void read_data(int data[], int size);
 
-void swap_data(int* data, int size);
+void swap_data(int data[], int size);
 
 void swaping(int* a,int*  b);
 
@@ -34,7 +34,7 @@ int main()
 
 //-----------------------------------------------------------------------------
 
-void read_data (int* data, int size)
+void read_data (int data[], int size)
     {
        for (int i = 0; i < size; i++)
         {
