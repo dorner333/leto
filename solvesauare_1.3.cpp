@@ -8,9 +8,9 @@
 
 int solvesquare (double a, double b, double c, double* x1, double* x2);
 
-int isZero (double value);
-
 int solvelinear(double a, double b, double* x);
+
+int isZero (double value);
 
 void test_isZero();
 void test_solvesquare();
