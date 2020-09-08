@@ -10,12 +10,14 @@ int solvesquare (double a, double b, double c, double* x1, double* x2);
 
 int isZero (double value);
 
+int solvelinear(double a, double b, double* x);
+
 void test_isZero();
 void test_solvesquare();
 
-const double bias = 1e-5;
+//-----------------------------------------------------------------------------
 
-int solvelinear(double a, double b, double* x);
+const double bias = 1e-5;
 
 //-----------------------------------------------------------------------------
 
