@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <TXLib.h>
 #include <math.h>
 
 /*square equation solution*/
