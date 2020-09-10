@@ -1,3 +1,13 @@
+/*!
+    \brief   Function that solves a square equation
+    \version 1.3
+    \param[in] a,b,c  square equation coefficients
+    \param[out] x1,x2 roots of square equation
+
+
+This program gets the value of the coefficients (a b c),
+processes them and gives the number of roots and the roots themselves
+*/
 #include <stdio.h>
 #include <math.h>
 
