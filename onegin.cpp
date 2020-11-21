@@ -71,7 +71,7 @@ int main()
     //fl_qsort (arr_buffer, &compare, 0, linecounter-1);
     //print_to_file (&arr_buffer, linecounter, "a");
 
-    qsort (arr_buffer, linecounter, sizeof(STR), compare);
+    qsort (arr_buffer, linecounter, sizeof(STR), back_compare);
     print_to_file (&arr_buffer, linecounter, "a");
 
     print_file (buffer, linecounter);
