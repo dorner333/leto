@@ -4,8 +4,8 @@
 //!
 //!  \author     dorner333
 //!  \brief      program that take text from file, sort it an write to new file
-//!  \version    9.0
-//!  \param[in]  name  of file
+//!  \version    9.1
+//!  \param[in]  name  oo.txtf file
 //!  \param[out] sorted text
 //!
 //!
@@ -51,7 +51,7 @@ void print_file (char* buffer, int linecounter);
 
 void SWAP(STR* array, int left, int right);
 
-void fl_qsort (STR* array, int(*comparator)(const void*, const void*), int left, int right);
+void fl_qsort (STR* array, int(*comparator)(const void*, const void*), int begin, int end);
 
 //-----------------------------------------------------------------------------
 
@@ -65,14 +65,14 @@ int main()
 
     int linecounter = mkline(&buffer, &arr_buffer, sizeoffile);
 
-    qsort (arr_buffer, linecounter, sizeof(STR), compare);
-    print_to_file (&arr_buffer, linecounter, "w");
+    //qsort (arr_buffer, linecounter, sizeof(STR), compare);
+    //print_to_file (&arr_buffer, linecounter, "w");
 
-    //fl_qsort (arr_buffer, &compare, 0, linecounter-1);
-    //print_to_file (&arr_buffer, linecounter, "a");
-
-    qsort (arr_buffer, linecounter, sizeof(STR), back_compare);
+    fl_qsort (arr_buffer, &compare, 0, linecounter-1);        //linecounter-1
     print_to_file (&arr_buffer, linecounter, "a");
+
+    //qsort (arr_buffer, linecounter, sizeof(STR), back_compare);
+    //print_to_file (&arr_buffer, linecounter, "a");
 
     print_file (buffer, linecounter);
 
@@ -271,23 +271,36 @@ int back_compare(const void * x1, const void * x2)
 //!  \brief       it is my qsort, but it don't work now :(  If you see the problem, tel me pls!!!!
 //!
 //}[*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*][*]
-void fl_qsort (STR* array, int(*comparator)(const void*, const void*), int left, int right)
+void fl_qsort (STR* array, int(*comparator)(const void*, const void*), int begin, int end)
 {
-if (right >= left) return;
-int begin = left;
-int end   = right;
-int pivot = (left + right)/2;
-STR* base_element = array + pivot;                      //*
+if (begin >= end) return;
+int left = begin;
+int right   = end;
+int pivot = (begin + end)/2;
+STR* base_element = array + pivot;
+//printf("pivot = %d\n", pivot);
 
 while (left <= right)
 {
-    while (comparator(array + left , base_element) > 0) left++ ;
-    while (comparator(array + right, base_element) < 0) right--;
+    while (comparator(base_element, array + left) > 0) {
+    left++;
+    }
+    //printf("to right counter\n");
+    while (comparator(base_element, array + right) < 0) {
+    right--;
+    }
 
-    if (left < right) SWAP(array, left, right);
+    if (left <= right)
+    {
+    SWAP(array, left, right);
+    //printf("bliat pechataysia\n");
+    left++;
+    right--;
+    }
 }
-fl_qsort (array,comparator,begin , right - 1);
-fl_qsort (array,comparator, left + 1, end  );
+
+fl_qsort (array, comparator, begin , right);
+fl_qsort (array, comparator, left  , end  );
 }
 
 //-----------------------------------------------------------------------------
