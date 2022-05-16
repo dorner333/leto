@@ -1,3 +1,6 @@
+# Here are my first works on programming, do not judge strictly)
+
+
 # Onegin.c
 
 This program sorts the strings at the beginning and the end.
